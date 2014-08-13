@@ -1,18 +1,117 @@
-/*
-
- Dark Green : #78BD4C
-  Mid Green : #A8FF56
-       Lite : #ECFFE0
-Dark Purple : #A22FB0
-
-*/
-
-html, body {
-    background-color: #78BD4C;
-    height: 100%;
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*html, body {
+    /*color:#fff;*/
+    font-family: "Open Sans" , Arial;
+    background:#fff;
+    /*height: 100%;*/
     width: 100%;
+    height:100%;
     margin: 0;
     padding: 0;
+}
+nav {
+    height: 40px;
+    background: none repeat scroll 0% 0% #FFF;
+    padding: 10px;
+}
+
+.caption{
+    color: #A2A4A6;
+    font-size: 14px;
+    font-weight: 200;
+    font-family: "Open Sans";
+}
+
+
+h3 {
+    font-family: "Roboto";
+    font-weight: 200;
+}
+
+footer {
+    background: none repeat scroll 0% 0% #2C3E50;
+    height: 70px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    /*z-index: 1000000;*/
+} 
+
+.banner{
+    text-align: center;
+    /*width: 80%;*/
+    color: #505E6D;
+    font-weight: 300;
+    background:url(../img/congruent_pentagon.png) repeat fixed;
+    border-bottom: 10px solid #33B76E;
+    box-shadow: 5px 1px 10px #EEE;
+    height: 250px;
+    /*margin-bottom: -120px;*/
+    line-height: 10px;
+    padding-top: 50px;
+}
+
+
+#logo{
+    float: left;
+    width: auto;
+}
+
+#logo span {
+    position: absolute;
+    top: 25px;
+}
+
+#logo img {
+    background: none repeat scroll 0% 0% #2C3E50;
+    border-radius: 50%;
+    height: 40px;
+    margin: 0px 10px;
+}
+
+ul {
+    width: 280px;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    display: inline-block;
+    /*margin: 0px 21px;*/
+    color:#33B76E;
+}
+
+li:hover{
+    border-bottom:2px solid #2C3E50;
+    cursor:pointer;
+}
+
+
+
+#intro-screen-template{
+        background:url(../img/congruent_pentagon.png) repeat;
+
+}
+
+.circle {
+    background: none repeat scroll 0% 0% #505E6D;
+    border-radius: 50%;
+    height: 140px;
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    border: 5px solid transparent;
+    -webkit-transition: border .3s ease-in-out;
+    -moz-transition: border .3s ease-in-out;
+    -o-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+
+.circle:hover {
+    border: 5px solid #33B76E;
 }
 
 
@@ -22,28 +121,23 @@ html, body {
      (Inspired by Bootstrap 3.0)
    ****************************** */
 
-.btn {
+/*.btn {
     display: inline-block;
-    height: 100%;
-    width: 49%;
-    margin-bottom: 0;
-    color: #ECFFE0;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 2em;
+    margin-bottom: 0px;
+    font-family: "Helvetica",sans-serif;
+    font-weight: 200;
+    font-size: 20px;
     line-height: 1.2;
     text-align: center;
-    background-color: #8AD453;
+    background-color: #2c3e50;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
     border: 1px solid transparent;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
+    color: #FFF;
+    padding: 5px 21px 2px;
+    border-radius: 3px;
+}*/
 
 .btn:focus {
     outline: thin dotted #333;
@@ -51,11 +145,7 @@ html, body {
     outline-offset: -2px;
 }
 
-.btn:hover,
-.btn:focus {
-    color: #AE37B2;
-    text-decoration: none;
-}
+
 
 .btn:active,
 .btn.active {
@@ -72,6 +162,10 @@ html, body {
     float: right;
 }
 
+.txt_center{
+    text-align: center;
+}
+
 /* ******************************
           TITLE SCREEN
      (intro-screen-template)
@@ -83,30 +177,78 @@ html, body {
 }
 
 .titleWrapper {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand",sans-serif;
     font-weight: 400;
-    position: absolute;
-    height: 50%;
+    position: relative;
     width: 96%;
-    margin: auto;
-    bottom: 0;
-    left: 0;
-    top: 0;
-    right: 0;
+    margin: 30px auto;
 }
 
 .title {
-    margin: 0px auto;
+    margin: 60px auto;
     text-align: center;
-    width: 100%;
-    font-family: 'Quicksand', sans-serif;
-    color: #ECFFE0;
+    width: 70%;
+    font-family: "Quicksand",sans-serif;
+    color: #505E6D;
     font-weight: 300;
+    background: none repeat scroll 0% 0% #FFF;
+    padding: 70px 0px;
+    border-bottom: 6px solid #33B76E;
+}
+
+
+.rev_title {
+    margin: 60px auto;
+    text-align: center;
+    width: 80%;
+    font-family: "Quicksand",sans-serif;
+    color: #505E6D;
+    font-weight: 300;
+    background: #fff;
+    padding: 70px 0px;
+    border-bottom: 6px solid #33B76E;
+    font-size: 60px;
+}
+
+.dark {
+    -webkit-transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -o-transition: opacity 2s ease-in-out;
+    transition: opacity 2s ease-in-out;
+   background: none repeat scroll 0% 0% #2C3E50;
+    opacity: 1;
+    border-bottom: 6px solid #0C1E30;
+    width: 230px;
+    font-size: 100%;
+    padding: 7px 10px;
+}
+
+.dark:hover {
+    background:#2c3e50;
+    color:#27ae60;
+    /*opacity:.8;*/
+}
+
+    .sub_title {
+        font-size: 30px;
+        color: #727476;
+        padding: 10px;
+        font-weight: 200;
+        line-height: 36px;
+}  
+
+.textFitted{
+    font-size:70px;
 }
 
 .buttons {
-    width: 100%;
+    width: 520px;
+    /*width:40%;*/
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+
 }
 
 /* ******************************
@@ -115,45 +257,118 @@ html, body {
    ****************************** */
 
 .createGameWrapper, .joinGameWrapper, .gameOver {
-    font-family: 'Quicksand', sans-serif;
-    margin: 0 auto;
-    text-align: center;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 200;
 }
 
 .createGameWrapper .info{
-    color: #ECFFE0;
-    font-weight: 400;
-    font-size: 2em;
-    margin-top: 1.5em;
+   margin: 30px auto;
+    text-align: center;
+    width: 100%;
+    color: #505E6D;
+    font-weight: 300;
+    font-size: 70px;
+    padding: 10px 0px !important;
+    background: #fff;
+    line-height: 1em;
 }
 
+
+.createGameWrapper .info span{
+    text-align: center;  
+}
+
+#url_dir{
+    font-size: 23px;
+    color: #FFF;
+    font-family: "Roboto";
+    font-weight: 200;
+}
+
+.help{
+   background: none repeat scroll 0% 0% #505E6D;
+    color: #33B76E;
+    width: auto;
+    padding: 10px 25px;
+    text-align: left;
+}
+
+.help_info{
+    font-weight: 100;
+    color:#fff;
+    font-size: 23px;
+    font-family: "Open Sans";
+}
+
+hr {
+    margin: 8px auto;
+    border-top: 1px solid #fff;
+}
+
+article{
+   height: 100%;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*#home {
+    background:url(../img/congruent_pentagon.png) repeat;
+}*/
+
+
+/*#steps_img img{
+width: 100%;
+}*/
+
+.infoBig >.textFitted {
+    font-size: 25px !important;
+}
+
+
+.float-left{
+    float:left;
+    clear:both;
+}
+.float-right{
+    float:right;
+}
+
+
 .createGameWrapper{
-    color: #AE37B2;
+    /*color: #AE37B2;*/
     font-weight: 300;
 }
 
 .info label {
     display: block;
+    padding-bottom: 8px;
+    font-size: 17px;
+    font-family: "Open Sans";
 }
 
 .info input {
-    text-align: center;
-    padding: 10px;
-    width: 200px;
-    height: 60px;
-    font-family: 'Quicksand', sans-serif;
-    color: #A22FB0;
+    text-align: left;
+    padding: 9px;
+    width: 90%;
+    height: 16px;
+    font-family: "Quicksand",sans-serif;
+    color: #2C3E50;
     font-weight: 300;
-    font-size: 54px;
-    border: 1px dotted white;
-    border-radius: 10px;
-    background: transparent;
-}
+    font-size: 15px;
+    background: none repeat scroll 0% 0% #FFF;
+    border: 1px solid #33B76E;
+    border-radius: 2px;
+    }
 
 .info input#inputPlayerName {
     width: 90%;
 }
 
+.pad{
+   padding: 15px;
+    margin-top: 0px;
+}
 
 /* ******************************
            JOIN SCREEN
@@ -161,37 +376,48 @@ html, body {
    ****************************** */
 
 .joinGameWrapper {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    min-height: 320px;
+   margin: 60px auto;
+padding: 1px 0px;
+background: none repeat scroll 0% 0% #FFF;
+border-bottom: 10px solid #33b76e;
 }
 
 .joinGameWrapper .info {
-    font-size: 1.5em;
-    color: #ECFFE0;
-    height: 30%;
-    padding-top: 1%;
+   font-size: 1.5em;
+    color: #000;
+    height: 18%;
+    margin-top: 15px;
 }
 
 .joinGameWrapper .btn {
-    width: 100%;
-    height: 50%;
+    /*width: 100%;
+    height: 50%;*/
 }
 
 #playerWaitingMessage {
-    font-size: .8em;
+    font-size: .6em;
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: #6f6f6f;
+    margin-bottom: 10px;
 }
 
 .createGameWrapper #gameURL {
-    font-size: 4em;
+    /*font-size: 4em;*/
 }
 
 .createGameWrapper .gameId {
-    font-size: 8em;
+    font-size: 4.4em;
+    font-family: "Open Sans";
+    font-weight: 200;
+    line-height: 1em;
 }
 
+#hostWord >.textFitted{
 
+}
 
 /* ******************************
           PLAYER GAME SCREEN
@@ -208,15 +434,22 @@ html, body {
 
 #ulAnswers li {
     width: 100%;
-    height: 16.6%;
+    /*height: 16.6%;*/
 }
 
 .btnAnswer {
     width: 100%;
-    border-bottom: 1px dotted white;
-    font-weight: 400;
-    font-size: 3em;
-    color: #AE37B2;
+    border-bottom: 1px solid #FFF;
+    font-weight: 200;
+    font-size: 21px;
+    color: #FFF;
+    height: auto;
+    font-family: "Roboto";
+    padding: 15px;
+}
+
+.btnAnswer:hover{
+    background: #33b76e;
 }
 
 
@@ -228,21 +461,23 @@ html, body {
 
 /* Absolute Centering: http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/ */
 #wordArea {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand",sans-serif;
     font-weight: 400;
-    position: absolute;
-    height: 50%;
-    width: 50%;
-    margin: auto;
-    bottom: 0;
-    left: 0;
-    top: 0;
-    right: 0;
+    position: relative;
+    height: 100%;
+    width: 75%;
+    margin: 60px auto;
 }
 
 #hostWord {
-    height: 100%;
+   height: 100%;
     width: 100%;
+    background: none repeat scroll 0% 0% #2C3E50;
+    text-align: center;
+    color: #33B76E;
+    font-family: "Roboto";
+    padding: 30px 0px;
+    text-transform: uppercase; 
 }
 
 #hostWord h2, #btnPlayerRestart h3 {
@@ -256,46 +491,58 @@ html, body {
 }
 
 #playerScores {
-    height: 10%;
-    width: 100%;
-    position: fixed;
-    top: 0;
+    width: 60%;
+    position: relative;
+    background: none repeat scroll 0% 0% #FFF;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .playerScore {
-    width: 50%;
-    padding: 0;
-    margin: 0;
-    font-family: 'Quicksand', sans-serif;
+    width: 48%;
+    padding: 0px;
+    font-family: "Quicksand",sans-serif;
     font-weight: 400;
     height: 100%;
+    position: relative;
+    display: inline-block;
+    text-align: center;
 }
 
 .playerScore span {
     display: inline-block;
-    font-size: 1.4EM;
+    font-size: 1.4em;
     padding: 2%;
     min-width: 10%;
-    margin: 0;
+    margin: 0px;
+    position: relative;
+    font-family: "Roboto";
+    font-weight: 200;
 }
 
 .playerScore .score {
     text-align: center;
-    background-color: #A8FF56;
+    color: #27AE60;
+    margin-top: -30px;
 }
 
 .playerScore .playerName {
-    width: 77%;
-    background-color: #ECFFE0;
+    width: auto;
 }
 
 #player1Score {
-    float: left;
+    /*float: left;*/
+    /*color:#2C3E50 !important;*/
+    display:inline-block;
+    border-bottom: 5px solid #2C3E50;
 }
 
 #player2Score {
     float: right;
-    text-align: right;
+    text-align: center;
+    border-bottom: 5px solid #33B76E;
+    /*color: #27AE60;*/
 }
 
 
@@ -319,3 +566,15 @@ html, body {
 }
 
 
+
+
+
+
+/*HOVER EFFECTS*/
+
+
+/*On hover (jQuery) show h3*/
+h3:hover{
+    color:#33B76E;
+}
+*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/

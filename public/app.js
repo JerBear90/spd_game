@@ -206,7 +206,7 @@ jQuery(function($){
                 // Update host screen
                 $('#playersWaiting')
                     .append('<p/>')
-                    .text('Player ' + data.playerName + ' joined the game.');
+                    .text('Player ' + data.playerName + ' has just joined the game. Waiting for Player 2 to join.');
 
                 // Store the new player's data on the Host.
                 App.Host.players.push(data);
@@ -232,7 +232,7 @@ jQuery(function($){
                         App.doTextFit('#hostWord');
 
                         // Begin the onscreen timer
-                         var $secondsLeft = $('#hostWord');
+                        var $secondsLeft = $('#hostWord');
                         App.countDown( $secondsLeft, 5, function(){
                         IO.socket.emit('hostCountdownFinished', App.gameId);
                             });
@@ -241,8 +241,8 @@ jQuery(function($){
                         //Duplicate for more than Two users
                         // player1Score
                         $('#player1Score')
-                    .find('.playerName')
-                    .html(App.Host.players[0].playerName);
+                        .find('.playerName')
+                        .html(App.Host.players[0].playerName);
 
                 $('#player2Score')
                     .find('.playerName')
@@ -365,7 +365,7 @@ jQuery(function($){
                     //Collect the data and send it to the server
                     var data = {
                     gameId : +($('#inputGameId').val()),
-                    playerName : $('#inputPlayerName').val() || 'anon'
+                    playerName : $('#inputPlayerName').val() || 'Guest User'
                 };
 
                     // Send the GameID and playerName to the Server

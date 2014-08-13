@@ -1,113 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+<meta charset="utf-8"/>
 
-    <!-- Ensure that everything scales appropriately on a mobile device -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!-- Ensure that everything scales appropriately on a mobile device -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <!-- Let's borrow a cool looking Font from Google -->
-    <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link href="css/styles.css" rel="stylesheet">
+<!-- CSS
+  ================================================== -->
+
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+<!-- Let's borrow a cool looking Font from Google -->
+<link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/demo.css" /> -->
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<link rel="stylesheet" type="text/css" href="css/content.css" />
+<link rel="stylesheet" type="text/css" href="css/skeleton.css" />
+
+
+<!-- Font -->
+<link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/font_awesome.css">
+
+<script src="libs/modernizr.custom.js"></script>
 </head>
 
 <body>
-
-
-    <div id="gameArea">
-        <!-- This is where the templates defined below will be used -->
+<!-- Top Navigation -->
+<nav> </nav>
+<section>
+  <div class="sixteen columns banner ">
+    <h1 class="remove-bottom" style="margin-top: 40px">Webmaster 3000</h1>
+    <h5 class="sub_title sub_fix">A Multiplayer Language-based Trivial Game</h5>
+    
+    <!--  <h5 class="sub_title"><span>WARNING:</span> May be addictive</h5> --> 
+  </div>
+</section>
+<div class="container columns">
+  <section class="clear_fix">
+    <div class="four columns mobile_bg">
+      <div class="circle"><img src="img/icons/data.png" height="100" width="100"></div>
+      <h3>Multiplayer</h3>
+      <h5>Compete against Friends</h5>
     </div>
+    <div class="four columns mobile_bg">
+      <div class="circle"><img src="img/icons/data.png" height="100" width="100"></div>
+      <h3>Highscore</h3>
+      <h5>Where do you stand?</h5>
+    </div>
+    <div class="four columns mobile_bg">
+      <div class="circle"><img src="img/icons/data.png" height="100" width="100"></div>
+      <h3>Stay Connected</h3>
+      <h5>Play anyone anywhere </h5>
+    </div>
+    <section>
+      <div class="morph-button morph-button-overlay morph-button-fixed">
+        <button type="button">START PLAYING</button>
+        <div class="morph-content">
+          <div>
+            <div class="content-style-overlay">
+              <nav> <span class="icon icon-close">Close the overlay</span> </nav>
+              <div id="gameArea"> 
+                <!-- This is where the templates defined below will be used --> 
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- morph-button --> 
+      
+    </section>
+  </section>
+</div>
+<!-- /container --> 
 
-    <!-- Main Title Screen that appears when the page loads for the first time -->
-    <script id="intro-screen-template" type="text/template">
+<!-- Main Title Screen that appears when the page loads for the first time --> 
+<script id="intro-screen-template" type="text/template">
+    <section id="home" class="">
+
 
         <div class="titleWrapper">
 
             <div class="title">
-                ANAGRAMMATIX
-            </div>
+                Create or Join a Game
 
-            <div class="buttons">
+                <br>
+                <span class="sub_title"> Create or Join a Game </span>
+             
+                        
+                
 
-                <button id="btnCreateGame" class="btn left">CREATE</button>
-                <button id="btnJoinGame" class="btn right">JOIN</button>
+                <div class="buttons">
+
+                <button id="btnCreateGame" class="btn left dark">CREATE</button>
+                <button id="btnJoinGame" class="btn right dark">JOIN</button>
                 <div style="clear:both"></div>
+
+
             </div>
 
+            </div>
+
+
+            <div class="hintChgr">If you have not yet created a game do so by click on the Create button. </div>
         </div>
+</section>
+    </script> 
 
-    </script>
-
-    <!-- This screen appears when a user clicks "CREATE" on the Title Screen -->
-    <script id="create-game-template" type="text/template">
+<!-- This screen appears when a user clicks "CREATE" on the Title Screen --> 
+<script id="create-game-template" type="text/template">
         <div class="createGameWrapper">
 
-            <div class="info">Open this site on your mobile device:</div>
-            <div id="gameURL" class="infoBig">Error!</div>
+            <div class="info">
+                    Connect Your Devices
+                                 
+            </div>
+           
 
-            <div class="info">Then click <strong>JOIN</strong> and <br/> enter the following Game ID:</div>
-            <div id="spanNewGameCode" class="gameId">Error!</div>
+            <div class="help twelve">
 
-            <div id="playersWaiting"></div>
+         
+            <br>
+            <span class="white step">STEP 1 </span>
+            <br>
+            <span id="url_dir"> Navigate to: </span>
+                <div id="gameURL" class="infoBig">Error!</div>
+
+                    
+                <span class="white">Using your favorite Mobile Web browser  connect to the URl Provided above.  </span>
+
+                <hr>
+                <span class="white step">STEP 2 </span>
+            <br>
+                <div class="help_info">Enter Room #</div>
+                <div id="spanNewGameCode" class="gameId">Error!</div>
+                <span class="white">
+            Having issues connecting to a room? Try refreshing and enter in the new room number. 
+            </span>
+            </div>
+            
+            
+           
+            <div id="playersWaiting" class="help nine"></div>
+
         </div>
-    </script>
+    </script> 
 
-    <!-- This scrreen appears when a player clicks "JOIN" on the Title Screen -->
-    <script id="join-game-template" type="text/template">
+<!-- This scrreen appears when a player clicks "JOIN" on the Title Screen --> 
+<script id="join-game-template" type="text/template">
+ 
+
         <div class="joinGameWrapper">
+
+ <div class="pad">
             <div class="info">
-                <label for="inputPlayerName">Your Name:</label>
-                <input id="inputPlayerName" type="text" />
+                <label for="inputPlayerName">Please enter a username:</label>
+
+                <span class="input_icon"> </span>
+                <input id="inputPlayerName" placeholder="Username" class="input_fix" type="text" />
+            </div>
+            <div class="info">
+            
+                <label for="inputGameId">Room #:</label>
+                <span class="input_icon"></span>
+                <input id="inputGameId" placeholder="Room Number" type="text"/>
             </div>
 
-            <div class="info">
-                <label for="inputGameId">Game ID:</label>
-                <input id="inputGameId" type="text"/>
-            </div>
-
+</div>
             <div class="info buttons">
-                <button id="btnStart" class="btn">Start</button>
+                <button id="btnStart" class="btn dark">START</button>
                 <div id="playerWaitingMessage"></div>
             </div>
         </div>
-    </script>
+    </script> 
 
-    <!-- This is the 'Host' screen. It displays the word for each player to match -->
-    <script id="host-game-template" type="text/template">
+<!-- This is the 'Host' screen. It displays the word for each player to match --> 
+<script id="host-game-template" type="text/template">
+
         <div id="wordArea">
+        <div class="info round bdr_green"> Round 1 </div>
             <div id="hostWord">5</div>
         </div>
         <div id="playerScores">
             <div id="player1Score" class="playerScore">
                 <span class="score">0</span><span class="playerName">Player 1</span>
             </div>
+
             <div id="player2Score" class="playerScore">
                 <span class="playerName">Player 2</span><span class="score">0</span>
             </div>
+
+
         </div>
-    </script>
+    </script> 
+<script src="libs/classie.js"></script> 
+<script src="libs/uiMorphingButton_fixed.js"></script> 
+<script>
+            (function() {   
+                var docElem = window.document.documentElement, didScroll, scrollPosition;
 
-    <!-- JavaScript Libraries -->
+                // trick to prevent scrolling when opening/closing button
+                function noScrollFn() {
+                    window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+                }
 
-    <!-- jQuery! -->
-    <script src="libs/jquery-2.0.2.min.js"></script>
+                function noScroll() {
+                    window.removeEventListener( 'scroll', scrollHandler );
+                    window.addEventListener( 'scroll', noScrollFn );
+                }
 
-    <!-- TextFit resizes text to fill a container.
+                function scrollFn() {
+                    window.addEventListener( 'scroll', scrollHandler );
+                }
+
+                function canScroll() {
+                    window.removeEventListener( 'scroll', noScrollFn );
+                    scrollFn();
+                }
+
+                function scrollHandler() {
+                    if( !didScroll ) {
+                        didScroll = true;
+                        setTimeout( function() { scrollPage(); }, 60 );
+                    }
+                };
+
+                function scrollPage() {
+                    scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+                    didScroll = false;
+                };
+
+                scrollFn();
+                
+                var el = document.querySelector( '.morph-button' );
+                
+                new UIMorphingButton( el, {
+                    closeEl : '.icon-close',
+                    onBeforeOpen : function() {
+                        // don't allow to scroll
+                        noScroll();
+                    },
+                    onAfterOpen : function() {
+                        // can scroll again
+                        canScroll();
+                        // add class "noscroll" to body
+                        classie.addClass( document.body, 'noscroll' );
+                        // add scroll class to main el
+                        classie.addClass( el, 'scroll' );
+                    },
+                    onBeforeClose : function() {
+                        // remove class "noscroll" to body
+                        classie.removeClass( document.body, 'noscroll' );
+                        // remove scroll class from main el
+                        classie.removeClass( el, 'scroll' );
+                        // don't allow to scroll
+                        noScroll();
+                    },
+                    onAfterClose : function() {
+                        // can scroll again
+                        canScroll();
+                    }
+                } );
+            })();
+        </script>
+<!-- JavaScript Libraries --> 
+
+<!-- jQuery! --> 
+<script src="libs/jquery-2.0.2.min.js"></script> 
+
+<!-- TextFit resizes text to fill a container.
         It's used so the titles and game words fit properly on any size screen.
-        https://github.com/STRML/textFit   -->
-    <script src="libs/textFit.min.js"></script>
+        https://github.com/STRML/textFit   --> 
+<script src="libs/textFit.min.js"></script> 
 
-    <!-- FastClick is used to eliminate the 300ms delay when clicking items on a mobile device
-        https://github.com/ftlabs/fastclick -->
-    <script src="libs/fastclick.js"></script>
+<!-- FastClick is used to eliminate the 300ms delay when clicking items on a mobile device
+        https://github.com/ftlabs/fastclick --> 
+<script src="libs/fastclick.js"></script> 
 
-    <!-- If Socket.IO is used with Express, then the /socket.io/ path will
-        serve the proper Socket.IO javascript files used by the browser -->
-    <script src="/socket.io/socket.io.js"></script>
+<!-- If Socket.IO is used with Express, then the /socket.io/ path will
+        serve the proper Socket.IO javascript files used by the browser --> 
+<script src="/socket.io/socket.io.js"></script> 
 
-    <!-- app.js is where all the client-side Anagrammatix game logic -->
-    <script src="app.js"></script>
-
+<!-- app.js is where all the client-side Anagrammatix game logic --> 
+<script src="app.js"></script>
 </body>
 </html>

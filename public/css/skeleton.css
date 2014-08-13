@@ -1,0 +1,1182 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+
+/* Table of Contents
+==================================================
+    #Base 960 Grid
+    #Tablet (Portrait)
+    #Mobile (Portrait)
+    #Mobile (Landscape)
+    #Clearing */
+
+
+
+/* #Base 960 Grid
+================================================== */
+html, body {
+    /*color:#fff;*/
+    font-family: "Open Sans", Arial;
+    background: #fff;
+    /*height: 100%;*/
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    height: 50px;
+    background: none repeat scroll 0% 0% #FFF;
+}
+
+h1{
+    font-size: 6em;
+
+}
+.caption {
+    color: #C2C4C6;
+    font-size: 16px;
+    font-weight: 200;
+    font-family: "Open Sans";
+}
+.field_desc {
+    color: #C2C4C6;
+    font-weight: 400;
+    font-family: "Open Sans";
+    font-size: 12px;
+}
+h3 {
+    font-family: "Roboto";
+    font-weight: 200;
+}
+h4 {
+    font-family: "Roboto";
+    font-size: 20px;
+    height: 5px;
+    font-weight: 200;
+}
+h5 {
+    color: #33B76E;
+    font-size: 15px;
+    font-weight: 600;
+}
+footer {
+    background: none repeat scroll 0% 0% #2C3E50;
+    height: 70px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;/*z-index: 1000000;*/
+}
+
+.round{
+    background:#fff;
+    font-size: 28px;
+}
+
+#playersWaiting {
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FFF;
+    font-weight: bold;
+    background: none repeat scroll 0% 0% #33B76E;
+    padding: 4px 15px;
+    width: 650px;
+    border: medium none;
+
+}
+.step {
+    font-weight: bold;
+}
+.banner {
+    text-align: center;
+    color: #505E6D;
+    font-weight: 300;
+    background: url(../img/congruent_pentagon.png) repeat fixed;
+    border-bottom: 10px solid #33B76E;
+    box-shadow: 5px 1px 10px #EEE;
+    line-height: 10px;
+    padding-top: 50px;
+    font-family: "Roboto";
+    height: 270px;
+}
+#logo {
+    float: left;
+    width: auto;
+}
+#logo span {
+    position: absolute;
+    top: 25px;
+}
+#logo img {
+    background: none repeat scroll 0% 0% #2C3E50;
+    border-radius: 50%;
+    height: 40px;
+    margin: 0px 10px;
+}
+ul {
+    width: 280px;
+    float: left;
+}
+li {
+    display: inline-block;
+    color: #2c3e50;
+    padding: 0px 10px 0px 10px;
+    font-family: "Open Sans";
+    font-weight: 300;
+}
+li:hover {
+    border-bottom: 2px solid #2C3E50;
+    cursor: pointer;
+}
+#intro-screen-template {
+    background: url(../img/congruent_pentagon.png) repeat;
+}
+.circle {
+    background: none repeat scroll 0% 0% #505E6D;
+    border-radius: 50%;
+    height: 140px;
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border: 5px solid transparent;
+    -webkit-transition: border .3s ease-in-out;
+    -moz-transition: border .3s ease-in-out;
+    -o-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+.circle:hover {
+    border: 5px solid #33B76E;
+}
+/* ******************************
+              BUTTONS!
+     (Inspired by Bootstrap 3.0)
+   ****************************** */
+
+/*.btn {
+    display: inline-block;
+    margin-bottom: 0px;
+    font-family: "Helvetica",sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 1.2;
+    text-align: center;
+    background-color: #2c3e50;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    color: #FFF;
+    padding: 5px 21px 2px;
+    border-radius: 3px;
+}*/
+
+.btn:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.btn:active, .btn.active {
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.txt_center {
+    text-align: center;
+}
+/* ******************************
+          TITLE SCREEN
+     (intro-screen-template)
+   ****************************** */
+
+
+#gameArea {
+    height: 100%;
+    width: 100%;
+}
+.titleWrapper {
+    font-weight: 400;
+    position: relative;
+    width: 96%;
+    margin: 30px auto;
+    padding: 10px 0px 30px 0px;
+}
+.title {
+    margin: 0px auto 70px;
+    text-align: center;
+    width: 70%;
+    color: #505E6D;
+    font-weight: 300;
+    background: none repeat scroll 0% 0% #FFF;
+    padding: 30px 0px 40px;
+    border-bottom: 6px solid #2C3E50;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: "Open Sans";
+}
+.rev_title {
+    margin: 60px auto;
+    text-align: center;
+    width: 80%;
+    font-family: "Quicksand", sans-serif;
+    color: #505E6D;
+    font-weight: 300;
+    background: #fff;
+    padding: 70px 0px;
+    border-bottom: 6px solid #33B76E;
+    font-size: 60px;
+}
+.dark {
+    -webkit-transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -o-transition: opacity 2s ease-in-out;
+    transition: opacity 2s ease-in-out;
+    background: none repeat scroll 0% 0% #33B76E;
+    opacity: 1;
+    width: 230px;
+    font-size: 100%;
+    padding: 7px 10px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 2px;
+    border-bottom: 7px solid #03873E;
+}
+.dark:hover {
+    background: #47CE80;
+    color: #fff;/*opacity:.8;*/
+}
+.sub_title {
+    color: #727476;
+    padding: 10px;
+    font-weight: 200;
+    line-height: 36px;
+    font-size: 34px;
+    text-align: center;
+}
+.textFitted {
+    font-size: 50px !important;
+}
+.buttons {
+    width: 520px;
+    /*width:40%;*/
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+/* ******************************
+          START SCREEN
+     (create-game-template)
+   ****************************** */
+
+.createGameWrapper, .joinGameWrapper, .gameOver {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 200;
+}
+.createGameWrapper .info {
+    margin: 30px auto;
+    text-align: center;
+    width: 100%;
+    color: #505E6D;
+    font-weight: 300;
+    font-size: 70px;
+    line-height: 1em;
+}
+.createGameWrapper .info span {
+    text-align: center;
+}
+#url_dir, .help_info {
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 200;
+}
+.help {
+    background: none repeat scroll 0% 0% #505E6D;
+    color: #33B76E;
+    padding: 10px 25px;
+    text-align: left;
+    width: 628px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hintChgr {
+    height: auto;
+    color: #FFF;
+    background: none repeat scroll 0% 0% #505E6D;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 25px 10px;
+    line-height: 21px;
+    font-weight: 200;
+    margin-top: -40px;
+    width: 66%;
+}
+hr {
+    margin: 15px 0px;
+    border-top: 1px solid #fff;
+}
+article {
+    height: 100%;
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*#home {
+    background:url(../img/congruent_pentagon.png) repeat;
+}*/
+
+
+/*#steps_img img{
+width: 100%;
+}*/
+
+.infoBig >.textFitted {
+    font-size: 25px !important;
+    font-weight: 400;
+}
+.float-left {
+    float: left;
+    clear: both;
+}
+.float-right {
+    float: right;
+}
+.createGameWrapper {
+    /*color: #AE37B2;*/
+    font-weight: 300;
+}
+.info label {
+    display: block;
+    padding-bottom: 8px;
+    font-size: 17px;
+    font-family: "Open Sans";
+    text-align: left;
+}
+.info input {
+    text-align: left;
+    padding: 9px 8px;
+    height: 16px;
+    font-family: "Quicksand", sans-serif;
+    color: #2C3E50;
+    font-weight: 300;
+    font-size: 15px;
+    background: none repeat scroll 0% 0% #FFF;
+    border: 1px solid #33B76E;
+    border-radius: 2px;
+    width: 100%;
+}
+.pad {
+    padding: 5px 0px;
+    text-align: left;
+    margin: 0px auto 30px;
+}
+.white {
+    color: #fff !important;
+}
+/* ******************************
+           JOIN SCREEN
+      (join-game-template)
+   ****************************** */
+
+.joinGameWrapper {
+  background: none repeat scroll 0% 0% #FFF;
+    color: #33B76E;
+    padding: 0px 15px;
+    text-align: left;
+    width: 628px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    border-bottom: 10px solid #2C3E50;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.joinGameWrapper .info {
+    font-size: 1.5em;
+    color: #000;
+    height: 18%;
+    margin-top: 15px;
+    font-size: 1.5em;
+    color: #000;
+    margin-top: 10px;
+}
+.joinGameWrapper .btn {
+/*width: 100%;
+    height: 50%;*/
+}
+#playerWaitingMessage {
+    font-size: .6em;
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: #6f6f6f;
+    margin-bottom: 10px;
+}
+.createGameWrapper #gameURL {
+/*font-size: 4em;*/
+}
+.createGameWrapper .gameId {
+    font-size: 4.4em;
+    font-family: "Open Sans";
+    font-weight: 200;
+    line-height: 1em;
+}
+#hostWord >.textFitted {
+    font-size: 70px;
+}
+.info {
+    font-size: 24px;
+    font-family: "Roboto";
+    color: #2c3e50;
+    font-weight: 200;
+    padding: 5px;
+}
+
+.bdr_green{
+        border-bottom: 3px solid #27ae60;
+
+}
+/* ******************************
+          PLAYER GAME SCREEN
+
+   ****************************** */
+
+
+#ulAnswers {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#ulAnswers li {
+    width: 94%;
+    /*height: 16.6%;*/
+}
+.btnAnswer {
+    width: 100%;
+    border-bottom: 1px solid #FFF;
+    font-weight: 200;
+    font-size: 21px;
+    color: #FFF;
+    height: auto;
+    font-family: "Roboto";
+    padding: 15px;
+}
+.btnAnswer:hover {
+    background: #33b76e;
+}
+/* ******************************
+            HOST SCREEN
+       (host-game-template)
+   ****************************** */
+
+/* Absolute Centering: http://coding.smashingmagazine.com/2013/08/09/absolute-horizontal-vertical-centering-css/ */
+#wordArea {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 400;
+    position: relative;
+    height: 100%;
+    width: 75%;
+    margin: 60px auto;
+}
+#hostWord {
+    height: 100%;
+    width: 100%;
+    background: none repeat scroll 0% 0% #2C3E50;
+    text-align: center;
+    color: #33B76E;
+    font-family: "Roboto";
+    padding: 30px 0px;
+    text-transform: uppercase;
+}
+#hostWord h2, #btnPlayerRestart h3 {
+    font-size: 161px;
+    line-height: 1em;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+#playerScores {
+    width: 550px;
+    position: relative;
+    background: none repeat scroll 0% 0% #FFF;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.playerScore {
+    width: 48%;
+    padding: 0px;
+    font-weight: 400;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    float: left;
+}
+.playerScore span {
+    display: inline-block;
+    font-size: 1em;
+    padding: 2%;
+    min-width: 10%;
+    margin: 0px;
+    position: relative;
+    font-family: "Roboto";
+    font-weight: 200;
+}
+.playerScore .score {
+    text-align: center;
+    color: #27AE60;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    font-size: 40px;
+    background: none repeat scroll 0% 0% #FFF;
+    z-index: -1;
+    padding-top: 30px;
+    top: -5px;
+}
+.playerScore .playerName {
+    width: auto;
+    word-break: break-all;
+}
+#player1Score {
+    /*float: left;*/
+    
+    display: inline-block;
+}
+#player2Score {
+    float: right;
+    text-align: center;
+}
+
+
+
+
+/* ******************************
+          TITLE SCREEN
+     (intro-screen-template)
+   ****************************** */
+
+.gameOver {
+    display: block;
+    height: 20%;
+    padding-top: 10%;
+    font-size: 2em;
+}
+.btnGameOver {
+   /* width: 100%;
+    height: 10%;
+    position: fixed;
+    bottom: 0;*/
+}
+.clear_fix {
+    margin-top: -110px;
+}
+/*HOVER EFFECTS*/
+
+/*On hover (jQuery) show h3*/
+/*h3:hover{
+    color:#33B76E;
+}*/
+
+
+.align-center {
+    text-align: center;
+}
+.container {
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+.container .column,  .container .columns {
+    float: left;
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.row {
+    margin-bottom: 20px;
+}
+/* Nested Column Classes */
+.column.alpha, .columns.alpha {
+    margin-left: 0;
+}
+.column.omega, .columns.omega {
+    margin-right: 0;
+}
+/* Base Grid */
+.container .one.column,  .container .one.columns {
+    width: 40px;
+}
+.container .two.columns {
+    width: 100px;
+}
+.container .three.columns {
+    width: 160px;
+}
+.container .four.columns {
+    width: 300px;
+    text-align: center;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+}
+.container .four.columns img {
+    position: relative;
+    top: 17px;
+}
+.container .five.columns {
+    width: 280px;
+}
+.container .six.columns {
+    width: 340px;
+}
+.container .seven.columns {
+    width: 400px;
+}
+.container .eight.columns {
+    width: 460px;
+}
+.container .nine.columns {
+    width: 520px;
+}
+.container .ten.columns {
+    width: 580px;
+}
+.container .eleven.columns {
+    width: 640px;
+}
+.container .twelve.columns {
+    width: 700px;
+}
+.container .thirteen.columns {
+    width: 760px;
+}
+.container .fourteen.columns {
+    width: 820px;
+}
+.container .fifteen.columns {
+    width: 880px;
+}
+.container .sixteen.columns {
+    width: 940px;
+}
+.container .one-third.column {
+    width: 300px;
+    text-align: center;
+    font-weight: 200;
+    font-family: "Roboto";
+}
+.one-third.column img {
+    position: relative;
+    top: 17px;
+}
+.container .two-thirds.column {
+    width: 620px;
+}
+/* Offsets */
+.container .offset-by-one {
+    padding-left: 60px;
+}
+.container .offset-by-two {
+    padding-left: 120px;
+}
+.container .offset-by-three {
+    padding-left: 180px;
+}
+.container .offset-by-four {
+    padding-left: 240px;
+}
+.container .offset-by-five {
+    padding-left: 300px;
+}
+.container .offset-by-six {
+    padding-left: 360px;
+}
+.container .offset-by-seven {
+    padding-left: 420px;
+}
+.container .offset-by-eight {
+    padding-left: 480px;
+}
+.container .offset-by-nine {
+    padding-left: 540px;
+}
+.container .offset-by-ten {
+    padding-left: 600px;
+}
+.container .offset-by-eleven {
+    padding-left: 660px;
+}
+.container .offset-by-twelve {
+    padding-left: 720px;
+}
+.container .offset-by-thirteen {
+    padding-left: 780px;
+}
+.container .offset-by-fourteen {
+    padding-left: 840px;
+}
+.container .offset-by-fifteen {
+    padding-left: 900px;
+}
+    
+
+
+/* #Tablet (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 768px */
+
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+.container {
+    width: 768px;
+}
+.container .column,  .container .columns {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.column.alpha, .columns.alpha {
+    margin-left: 0;
+    margin-right: 10px;
+}
+.column.omega, .columns.omega {
+    margin-right: 0;
+    margin-left: 10px;
+}
+.alpha.omega {
+    margin-left: 0;
+    margin-right: 0;
+}
+.container .one.column,  .container .one.columns {
+    width: 28px;
+}
+.container .two.columns {
+    width: 76px;
+}
+.container .three.columns {
+    width: 124px;
+}
+.container .four.columns {
+    width: 172px;
+}
+.container .five.columns {
+    width: 220px;
+}
+.container .six.columns {
+    width: 268px;
+}
+.container .seven.columns {
+    width: 316px;
+}
+.container .eight.columns {
+    width: 364px;
+}
+.container .nine.columns {
+    width: 638px;
+    border-bottom: 7px solid #33B76E;
+    border-right: 7px solid #33B76E;
+    margin-top: -7px;
+}
+.container .ten.columns {
+    width: 460px;
+}
+.container .eleven.columns {
+    width: 508px;
+    border-right: 4px solid #33B76E;
+    border-bottom: 7px solid #33B76E;
+}
+.container .twelve.columns {
+    width: 556px;
+    border-right: 4px solid #33B76E;
+    border-bottom: 7px solid #33B76E;
+}
+.container .thirteen.columns {
+    width: 604px;
+}
+.container .fourteen.columns {
+    width: 652px;
+}
+.container .fifteen.columns {
+    width: 700px;
+}
+.container .sixteen.columns {
+    width: 748px;
+}
+.container .one-third.column {
+    width: 236px;
+}
+.container .two-thirds.column {
+    width: 492px;
+}
+/* Offsets */
+.container .offset-by-one {
+    padding-left: 48px;
+}
+.container .offset-by-two {
+    padding-left: 96px;
+}
+.container .offset-by-three {
+    padding-left: 144px;
+}
+.container .offset-by-four {
+    padding-left: 192px;
+}
+.container .offset-by-five {
+    padding-left: 240px;
+}
+.container .offset-by-six {
+    padding-left: 288px;
+}
+.container .offset-by-seven {
+    padding-left: 336px;
+}
+.container .offset-by-eight {
+    padding-left: 384px;
+}
+.container .offset-by-nine {
+    padding-left: 432px;
+}
+.container .offset-by-ten {
+    padding-left: 480px;
+}
+.container .offset-by-eleven {
+    padding-left: 528px;
+}
+.container .offset-by-twelve {
+    padding-left: 576px;
+}
+.container .offset-by-thirteen {
+    padding-left: 624px;
+}
+.container .offset-by-fourteen {
+    padding-left: 672px;
+}
+.container .offset-by-fifteen {
+    padding-left: 720px;
+}
+.container {
+    width: 578px;
+}
+.buttons {
+    width: 470px;
+}
+.sub_title {
+    font-size: 20px;/*float:left;*/
+}
+.textFitted {
+    font-size: 41px !important;
+    font-weight: 700;
+    font-family: "Open Sans";
+}
+.title {
+    width: 90%;
+    padding: 70px 30px;
+}
+.container .six.columns {
+    width: 240px;
+}
+
+
+article {
+    height: 100%;
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container .nine.columns {
+    width: 520px;
+}
+.createGameWrapper .info {
+    font-size: 40px;
+}
+.help {
+    background: none repeat scroll 0% 0% #505E6D;
+    color: #33B76E;
+    padding: 0px 25px 13px 25px;
+    text-align: left;
+    height: 100%;
+}
+.hintChgr {
+    padding: 10px 45px;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+.joinGameWrapper {
+    background: none repeat scroll 0% 0% #FFF;
+    border-bottom: 10px solid #2c3e50;
+    margin: 60px auto;
+    /*width: 628px;*/
+    padding: 0px 25px 13px;
+}
+
+/*show hide show divs using jwuery and timing */
+            /* could be used to interchange between different hints, etc */
+
+}
+
+#inputPlayerName,#inputGameId,
+.input_fix{
+    width:90%;
+}
+/*input icon attachment*/
+.input_icon{
+    background:url(../img/icons/data_green.png);
+    width: 20px;
+    clear: both;
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
+    position: relative;
+    top: 2px;
+    background: none repeat scroll 0% 0% #EEE;
+    padding: 9px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+
+/*  #Mobile (Portrait)
+================================================== */
+
+    /* Note: Design for a width of 320px */
+
+    @media only screen and (max-width: 767px) {
+footer {
+    display: none;
+}
+.titleWrapper {
+    padding: 0px;
+}
+#inputPlayerName, #inputGameId, .input_fix {
+    width: 78%;
+}
+
+
+.joinGameWrapper{
+    width: 268px;
+}
+h1 {
+    font-size: 3em;
+    line-height: 50px;
+    margin-top: 10px !important;
+}
+h4 {
+    height: 27px;
+}
+.playerScore {
+}
+#playerScores {
+    width: 250px;
+}
+.hintChgr {
+    width: auto;
+}
+.dark {
+    margin-top: 5px;
+}
+.textFitted {
+}
+.sub_title {
+    font-size: 18px;
+    line-height: 28px;
+    /*padding: 24px 40px;*/
+    /*margin-top: -40px;*/
+    /*margin-bottom: 0px;*/
+}
+
+.sub_fix{
+padding: 0px 30px;
+margin-top: -20px;
+}
+.hintChgr {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.mobile_bg {
+    background: none repeat scroll 0% 0% #EEE;
+    padding: 25px 0px 0px 0px;
+    border-radius: 4px;
+}
+.textFitted {
+    font-size: 32px !important;
+    padding: 0px 20px;
+    font-weight: 700;
+    font-family: "Open Sans";
+}
+.buttons {
+    width: 230px !important;
+}
+.title {
+    margin: 0px auto 70px;
+    text-align: center;
+    width: 95%;
+    padding: 20px 0px;
+}
+.infoBig > .textFitted {
+    font-size: 20px !important;
+    text-align: left;
+    padding: 0;
+    line-height: 30px;
+}
+.createGameWrapper .gameId {
+    font-size: 3.4em;
+    line-height: 1.3em;
+}
+.small {
+    font-size: 9px;
+}
+.banner {
+    text-align: center;
+    color: #505E6D;
+    font-weight: 300;
+    background: url('../img/congruent_pentagon.png') repeat fixed 0% 0% transparent;
+    border-bottom: 10px solid #33B76E;
+    box-shadow: 5px 1px 10px #EEE;
+    height: auto;
+    line-height: 10px;
+    padding-top: 10px;
+}
+.clear_fix {
+    margin-top: 0px;
+}
+.createGameWrapper .info {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: "Open Sans";
+    padding: 15px 0px;
+    width: 97%;
+    background: none repeat scroll 0% 0% #FFF;
+}
+.container .eleven.columns {
+    width: 250px;
+}
+.help {
+    width: 80%;
+    padding-top: 0px;
+padding-bottom: 20px;
+}
+.caption {
+    line-height: 21px;
+    top: -10px;
+    position: relative;
+}
+.sub {
+    padding: 10px 25px;
+    color: #fff;
+}
+#playersWaiting {
+    width: 256px;
+}
+.pad {
+    width: 268px;
+    padding: 5px 0px;
+    margin: 0px;
+}
+.container {
+    width: 265px;
+}
+
+.createGameWrapper {
+    font-weight: 300;
+    width: 95%;
+    margin: 0 auto;
+}
+/*.container .columns,*/
+.container .column {
+    margin: 0;
+}
+.container .one.column,  .container .one.columns,  .container .two.columns,  .container .three.columns,  .container .five.columns,  .container .six.columns,  .container .seven.columns,  .container .eight.columns,  .container .nine.columns,  .container .ten.columns,  .container .eleven.columns,  .container .twelve.columns,  .container .thirteen.columns,  .container .fourteen.columns,  .container .fifteen.columns,  .container .sixteen.columns,  .container .one-third.column,  .container .two-thirds.column {
+    width: 245px;
+}
+.container .four.columns {
+    margin-bottom: 6px;
+    border-bottom: 3px solid #2C3E50;
+    width: 95%;
+    line-height: 12px;
+}
+.container {
+    margin: -20px auto;
+    width: 95%;
+}
+.circle {
+    border: 5px solid #27ae60;
+}
+/* Offsets */
+.container .offset-by-one,  .container .offset-by-two,  .container .offset-by-three,  .container .offset-by-four,  .container .offset-by-five,  .container .offset-by-six,  .container .offset-by-seven,  .container .offset-by-eight,  .container .offset-by-nine,  .container .offset-by-ten,  .container .offset-by-eleven,  .container .offset-by-twelve,  .container .offset-by-thirteen,  .container .offset-by-fourteen,  .container .offset-by-fifteen {
+    padding-left: 0;
+}
+}
+
+
+/* #Mobile (Landscape)
+================================================== */
+
+    /* Note: Design for a width of 480px */
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {
+    width: 420px;
+}
+.container .columns,  .container .column {
+    margin: 0;
+}
+.container .one.column,  .container .one.columns,  .container .two.columns,  .container .three.columns,  .container .four.columns,  .container .five.columns,  .container .six.columns,  .container .seven.columns,  .container .eight.columns,  .container .nine.columns,  .container .ten.columns,  .container .eleven.columns,  .container .twelve.columns,  .container .thirteen.columns,  .container .fourteen.columns,  .container .fifteen.columns,  .container .sixteen.columns,  .container .one-third.column,  .container .two-thirds.column {
+    width: 420px;
+}
+}
+/* #Clearing
+================================================== */
+
+    /* Self Clearing Goodness */
+.container:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+/* Use clearfix class on parent to clear nested columns,
+    or wrap each row of columns in a <div class="row"> */
+.clearfix:before,  .clearfix:after,  .row:before,  .row:after {
+    content: '\0020';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.row:after,  .clearfix:after {
+    clear: both;
+}
+.row,  .clearfix {
+    zoom: 1;
+}
+/* You can also use a <br class="clear" /> to clear columns */
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}

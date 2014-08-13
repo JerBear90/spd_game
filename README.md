@@ -72,3 +72,7 @@ Hoogle Challenge!
 		Project Proposal:
 
 			Create a JavaScript game that will utilize two mobile devices and a desktop browsers. The game will challenge the two users by asking questions related to javaScript (or other languages). There will be one question on the desktop and the two users have to answer the question with the corresponding correct answer. If the user gets the answer right first they are awarded points and the next round starts. There are 10 rounds, the player with the highest score at the end of the round wins. The players have the option in sign-in with clay.io to keep their scores, and achievements as well as post them on Facebook and Twiiter. If the User(s) gets a set amount of points or higher they are awarded with an achievement, which can also be stored and shared. 
+
+
+	// (USE ICONS that link to place to DL)
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="public/css/normalize.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="public/css/demo.css" /> -->
+		<link rel="stylesheet" type="text/css" href="public/css/component.css" />
+		<link rel="stylesheet" type="text/css" href="public/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="public/css/skeleton.css" />
+		<link rel="stylesheet" type="text/css" href="public/css/styles.css" />
+
+		<!-- Font -->
+		<link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+
+
+		<script src="public/libs/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<!-- Top Navigation -->
+			<nav>
+				<img src="public/img/world.png" height="70" width="70">
+				<ul>
+					<li>Home</li>
+					<li>About</li>
+					<li>Features</li>
+					<li>Fork</li>
+				</ul>
+			</nav>
+			<section>
+	<div class="sixteen columns banner">
+			<h1 class="remove-bottom" style="margin-top: 40px">Webmaster 3000</h1>
+			<h5 class="sub_title">Create or Join a Game to Get Started</h5>
+		</div>
+			</section>
+		<div class="container columns">
+			
+	<section class="">
+<div class="">
+		<div class="one-third column">
+			<div class="circle"><img src="public/img/icons/data.png" height="100" width="100"></div>
+			<h3>Multiplayer</h3>
+		</div>
+		<div class="one-third column">
+			<div class="circle"><img src="public/img/icons/data.png" height="100" width="100"></div>
+			<h3>Highscore</h3>
+		</div>
+		<div class="one-third column">
+			<div class="circle"><img src="public/img/icons/data.png" height="100" width="100"></div>
+			<h3>Stay Connected</h3>
+		</div>
+	</div>
+	</section>
+<p class="align-center">Click the button to see it expanding into a fullscreen overlay:</p>
+				<div class="morph-button morph-button-overlay morph-button-fixed">
+					<button type="button">More Info</button>
+					<div class="morph-content">
+						<div>
+							<div class="content-style-overlay">
+								<span class="icon icon-close">Close the overlay</span>
+								<h2>About Parsley</h2>
+								<p>Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.</p>
+							</div>
+						</div>
+					</div>
+				</div><!-- morph-button -->
+
+
+				</div><!-- /container -->
+		<script src="public/libs/classie.js"></script>
+		<script src="public/libs/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+				
+				var el = document.querySelector( '.morph-button' );
+				
+				new UIMorphingButton( el, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+						// add class "noscroll" to body
+						classie.addClass( document.body, 'noscroll' );
+						// add scroll class to main el
+						classie.addClass( el, 'scroll' );
+					},
+					onBeforeClose : function() {
+						// remove class "noscroll" to body
+						classie.removeClass( document.body, 'noscroll' );
+						// remove scroll class from main el
+						classie.removeClass( el, 'scroll' );
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+			})();
+		</script>
+	</body>
+</html>
