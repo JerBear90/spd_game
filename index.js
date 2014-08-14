@@ -20,7 +20,7 @@ app.configure(function() {
 });
 
 // Create a Node.js based http server on port 8180
-var server = require('http').createServer(app).listen(8180);
+var server = require('http').createServer(app).listen(80);
 
 // Create a Socket.IO server and attach it to the http server
 var io = require('socket.io').listen(server);
