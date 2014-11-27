@@ -99,13 +99,13 @@ footer {
     text-align: center;
     color: #505E6D;
     font-weight: 300;
-    background: url(../img/congruent_pentagon.png) repeat fixed;
+    background: url('../img/congruent_pentagon.png') repeat fixed 0% 0% transparent;
     border-bottom: 10px solid #33B76E;
     box-shadow: 5px 1px 10px #EEE;
     line-height: 10px;
-    padding-top: 50px;
+    padding-top: 30px;
     font-family: "Roboto";
-    height: 270px;
+    height: 300px;
 }
 #logo {
     float: left;
@@ -264,7 +264,7 @@ li:hover {
     padding: 10px;
     font-weight: 200;
     line-height: 36px;
-    font-size: 34px;
+    font-size: 28px;
     text-align: center;
 }
 .textFitted {
@@ -609,8 +609,8 @@ width: 100%;
 .container .column,  .container .columns {
     float: left;
     display: inline;
-    margin-left: 10px;
-    margin-right: 10px;
+    /*margin-left: 10px;
+    margin-right: 10px;*/
 }
 .row {
     margin-bottom: 20px;
@@ -1179,4 +1179,16 @@ padding-bottom: 20px;
     visibility: hidden;
     width: 0;
     height: 0;
+}
+
+
+
+/*Bootstrap overrides*/
+
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+.title_text {
+    font-size: 67px;
 }
