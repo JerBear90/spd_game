@@ -421,8 +421,7 @@ jQuery(function($){
                 // Display Get Ready While the COundown timer Clicks
                 gameCountdown : function(hostData) {
                 App.Player.hostSocketId = hostData.mySocketId;
-                $('#gameArea')
-                    .html('<div class="gameOver">Get Ready!</div>');
+                $('#gameArea').html('<div class="gameOver">Get Ready!</div>');
             },
 
                 // Show the list of words for the current round that we are in
@@ -443,10 +442,16 @@ jQuery(function($){
                             )
                         )
                 });
+$('#player1Score')
+                        .find('.playerName')
+                        .html(App.Host.players[0].playerName);
 
+                $('#player2Score')
+                    .find('.playerName')
+                    .html(App.Host.players[1].playerName);
                 // Insert the list onto the screen.
                 $('#gameArea').html($list);
-            },
+            }
 
                     // Show the "Game Over" Screen
                      endGame : function() {

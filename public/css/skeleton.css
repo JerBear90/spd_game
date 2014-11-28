@@ -108,7 +108,7 @@ footer {
     height: 300px;
 }
 #logo {
-    float: left;
+    float: l  eft;
     width: auto;
 }
 #logo span {
@@ -1191,4 +1191,9 @@ padding-bottom: 20px;
 
 .title_text {
     font-size: 67px;
+}
+
+
+#navbar{
+    width:90%;
 }
