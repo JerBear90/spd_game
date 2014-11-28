@@ -427,6 +427,14 @@ jQuery(function($){
 
                 // Show the list of words for the current round that we are in
                 newWord : function(data) {
+                               $('#player1Score')
+                        .find('.playerName')
+                        .html(App.Host.players[0].playerName);
+
+                $('#player2Score')
+                    .find('.playerName')
+                    .html(App.Host.players[1].playerName);
+                    
                 // Create an unordered list element
                 var $list = $('<ul/>').attr('id','ulAnswers');
 
@@ -443,7 +451,7 @@ jQuery(function($){
                             )
                         )
                 });
-                
+
 
                 // Insert the list onto the screen.
                 $('#gameArea').html($list);
