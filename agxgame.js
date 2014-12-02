@@ -226,9 +226,11 @@ function shuffle(array) {
  *
  * @type {Array}
  */
+ var xj = img/icons/data.png;
+
 var wordPool = [
     {
-        "words"  : [ "<img src=\"img/icons/data.png\"","1997" ],
+        "words"  : [ xj,"1997" ],
         "decoys" : [ "lead","lamp","seed","eels","lean","cels","lyse","sloe","tels","self" ]
     },
 
