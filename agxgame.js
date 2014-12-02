@@ -226,11 +226,9 @@ function shuffle(array) {
  *
  * @type {Array}
  */
- var xj = img/icons/data.png;
-
 var wordPool = [
     {
-        "words"  : [ xj,"1997" ],
+        "words"  : [ "Friends Was First on Television","1997" ],
         "decoys" : [ "lead","lamp","seed","eels","lean","cels","lyse","sloe","tels","self" ]
     },
 
