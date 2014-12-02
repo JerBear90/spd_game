@@ -228,7 +228,7 @@ function shuffle(array) {
  */
 var wordPool = [
     {
-        "words"  : [ "Friends Was First on Television","1997" ],
+        "words"  : [ "img/icons/data.png" ,"img/icons/data.png" ],
         "decoys" : [ "lead","lamp","seed","eels","lean","cels","lyse","sloe","tels","self" ]
     },
 
