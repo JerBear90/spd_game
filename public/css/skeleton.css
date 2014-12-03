@@ -471,17 +471,16 @@ width: 100%;
 .btnAnswer {
     width: 100%;
     color: #FFF;
-    padding: 15px;
-    height: auto;
     float: left;
     clear: both;
-    margin-top: 10px;
-    line-height: 27px;
-    font-size: 19px;
+    margin-top: 8px;
     font-family: "Open Sans";
-    font-weight: 600;
     border-bottom: 3px solid #33B76E;
+    line-height: 43px;
+    font-weight: 600;
     font-size: 15px;
+    height: 175px;
+    padding: 15px;
 }
 .btnAnswer:hover {
     background: #33b76e;
