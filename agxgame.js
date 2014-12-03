@@ -229,16 +229,7 @@ function shuffle(array) {
 var wordPool = [
     {
         "words"  : [ "<img src='http://placehold.it/100x100/eaeaea'>", "<img src='http://placehold.it/100x100/eaeaea'>" ],
-        "decoys" : [ "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                     "desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." ]
+        "decoys" : [ "lead","lamp","seed","eels","lean","cels","lyse","sloe","tels","self" ]
     },
 
     {
