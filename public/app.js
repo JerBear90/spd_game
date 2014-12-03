@@ -255,7 +255,7 @@ jQuery(function($){
 
                     newWord : function(data) {
                 // Insert the new word into the DOM
-                $('#hostWord').text(data.word);
+                $('#hostWord').html(data.word);
                 App.doTextFit('#hostWord');
 
                 // Update the data for the current round
@@ -319,7 +319,7 @@ jQuery(function($){
                 var tie = (p1Score === p2Score);
 
                     //Display the Winner (of if there is a tie)
-                    if(tie){
+                if(tie){
                     $('#hostWord').text("It's a Tie!");
                 } else {
                     $('#hostWord').text( winner + ' Wins!!' );
