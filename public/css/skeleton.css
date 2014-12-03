@@ -967,7 +967,7 @@ article {
 
     @media only screen and (max-width: 769px) {
 #ulAnswers li {
-    width: 44% !important;
+    width: 44% ;
 }
 
 
