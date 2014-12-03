@@ -470,17 +470,18 @@ width: 100%;
 }
 .btnAnswer {
     width: 100%;
-    border-bottom: 1px solid #FFF;
-    font-weight: 200;
-    font-size: 21px;
     color: #FFF;
-    height: auto;
-    font-family: "Roboto";
     padding: 15px;
-    height: 170px;
+    height: auto;
     float: left;
     clear: both;
     margin-top: 10px;
+    line-height: 27px;
+    font-size: 19px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    border-bottom: 3px solid #33B76E;
+    font-size: 15px;
 }
 .btnAnswer:hover {
     background: #33b76e;
@@ -971,7 +972,10 @@ article {
     width: 44% ;
 }
 
-
+.btnAnswer {
+   height: 175px;
+   line-height: 43px;
+}
 
 
 footer {
