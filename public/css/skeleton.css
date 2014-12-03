@@ -477,6 +477,9 @@ width: 100%;
     height: auto;
     font-family: "Roboto";
     padding: 15px;
+    height: 170px;
+    float: left;
+    clear: both;
 }
 .btnAnswer:hover {
     background: #33b76e;
@@ -962,10 +965,9 @@ article {
 
     /* Note: Design for a width of 320px */
 
-    @media only screen and (max-width: 767px) {
+    @media only screen and (max-width: 769px) {
 #ulAnswers li {
-    width: 50%;
-    /*height: 16.6%;*/
+    width: 44% !important;
 }
 
 
