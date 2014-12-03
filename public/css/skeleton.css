@@ -963,6 +963,14 @@ article {
     /* Note: Design for a width of 320px */
 
     @media only screen and (max-width: 767px) {
+#ulAnswers li {
+    width: 50%;
+    /*height: 16.6%;*/
+}
+
+
+
+
 footer {
     display: none;
 }
