@@ -220,9 +220,8 @@ li:hover {
     text-align: center;
     width: 70%;
     color: #505E6D;
-    font-weight: 300;
     background: none repeat scroll 0% 0% #FFF;
-    padding: 30px 0px 40px;
+    padding: 30px 80px 40px;
     border-bottom: 6px solid #2C3E50;
     border-radius: 4px;
     font-weight: 700;
@@ -264,12 +263,13 @@ li:hover {
     padding: 10px;
     font-weight: 200;
     line-height: 36px;
-    font-size: 28px;
+    font-size: 25px;
     text-align: center;
 }
 .textFitted {
-    font-size: 50px !important;
-}
+   font-size: 54px !important;
+    font-weight: 400;
+    }
 .buttons {
     width: 520px;
     /*width:40%;*/
