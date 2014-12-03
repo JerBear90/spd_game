@@ -1,204 +1,271 @@
 ;
 jQuery(function($){    
     'use strict';
-        // All of the code relevent to Socket.IO witll be collected inthe IO namespace
-        // Here we are conecting to the Socket IO click and serer when the page is displayed
 
-        var IO = {
-            init: function() {
+    /**
+     * All the code relevant to Socket.IO is collected in the IO namespace.
+     *
+     * @type {{init: Function, bindEvents: Function, onConnected: Function, onNewGameCreated: Function, playerJoinedRoom: Function, beginNewGame: Function, onNewWordData: Function, hostCheckAnswer: Function, gameOver: Function, error: Function}}
+     */
+    var IO = {
+
+        /**
+         * This is called when the page is displayed. It connects the Socket.IO client
+         * to the Socket.IO server
+         */
+        init: function() {
             IO.socket = io.connect();
             IO.bindEvents();
         },
 
-            //While Socket.IO is connect wit will listen to the fillowing events emitted by the socket Servier, then run the appropriate function.
-            bindEvents : function (){
-                IO.socket.on('connected', IO.onConnected); //when the game is connected
-                IO.socket.on('newGameCreated', IO.onNewGameCreated); // when a NewGame has been Created
-                IO.socket.on('playerJoinedRoom' ,IO.playerJoinedRoom ); // When a player has joined the room
-                IO.socket.on('beginNewGame' , IO.beginNewGame ); // When a New Game Begins
-                IO.socket.on('newWordData' , IO.onNewWordData ); // when a New Word is Present
-                IO.socket.on('hostCheckAnswer' , IO.hostCheckAnswer ); // Host check if the Awnser is correct
-                IO.socket.on('gameOver' , IO.gameOver); // When the Game is Over
-                IO.socket.on('error', IO.error); // Where an Error occurs
+        /**
+         * While connected, Socket.IO will listen to the following events emitted
+         * by the Socket.IO server, then run the appropriate function.
+         */
+        bindEvents : function() {
+            IO.socket.on('connected', IO.onConnected );
+            IO.socket.on('newGameCreated', IO.onNewGameCreated );
+            IO.socket.on('playerJoinedRoom', IO.playerJoinedRoom );
+            IO.socket.on('beginNewGame', IO.beginNewGame );
+            IO.socket.on('newWordData', IO.onNewWordData);
+            IO.socket.on('hostCheckAnswer', IO.hostCheckAnswer);
+            IO.socket.on('gameOver', IO.gameOver);
+            IO.socket.on('error', IO.error );
+        },
 
-            },
+        /**
+         * The client is successfully connected!
+         */
+        onConnected : function() {
+            // Cache a copy of the client's socket.IO session ID on the App
+            App.mySocketId = IO.socket.socket.sessionid;
+            // console.log(data.message);
+        },
 
-            // When the client is successfully connected
+        /**
+         * A new game has been created and a random game ID has been generated.
+         * @param data {{ gameId: int, mySocketId: * }}
+         */
+        onNewGameCreated : function(data) {
+            App.Host.gameInit(data);
+        },
 
-            onConnected : function () {
-                // Store a copy fo the client's Socket.IO session ID on the App
-                //alert the user/console that the user IO was successfully connected
-                //alert("Yay you were successfully connected.");
-                App.mySocketId = IO.socket.socket.sessionid;
+        /**
+         * A player has successfully joined the game.
+         * @param data {{playerName: string, gameId: int, mySocketId: int}}
+         */
+        playerJoinedRoom : function(data) {
+            // When a player joins a room, do the updateWaitingScreen funciton.
+            // There are two versions of this function: one for the 'host' and
+            // another for the 'player'.
+            //
+            // So on the 'host' browser window, the App.Host.updateWiatingScreen function is called.
+            // And on the player's browser, App.Player.updateWaitingScreen is called.
+            App[App.myRole].updateWaitingScreen(data);
+        },
 
-            },
+        /**
+         * Both players have joined the game.
+         * @param data
+         */
+        beginNewGame : function(data) {
+            App[App.myRole].gameCountdown(data);
+        },
 
-            // A new game has been created and a random gme ID has been generated
-            onNewGameCreated : function(data){
-                App.Host.gameInit(data);
-            },
+        /**
+         * A new set of words for the round is returned from the server.
+         * @param data
+         */
+        onNewWordData : function(data) {
+            // Update the current round
+            App.currentRound = data.round;
 
-            // Funtion for when a player successfully joins a game
-            playerJoinedRoom : function(data){
-                //When a player joins a room there are two undataWaitingScreen functions
-                // One for the player  - App.Player.updateWaitingScreen
-                //and one for the Host - App.Host.updateWaitingScreen
-                App[App.myRole].updateWaitingScreen(data);
+            // Change the word for the Host and Player
+            App[App.myRole].newWord(data);
+        },
 
-            },
-
-            //When X(2) amount of players have joined the room the countdown will be intitalized
-            beginNewGame : function(data){
-                App[App.myRole].gameCountdown(data);
-            },
-
-            // A new set of question for the round is returned from the server
-            onNewWordData : function(data){
-                App.currentRound = data.round;
-                App[App.myRole].newWord(data);
-
-            },
-
-            // Once a player has answered the question 
-            //we want to make sure it is the corresponding answer 
-            //to that of the Host
-            hostCheckAnswer : function(data){
-                if(App.myRole === 'Host' ){
-                    App.Host.checkAnswer(data);
-                }
-            },
-
-            // Let the players know that the Game is Over
-            gameOver : function(data) {
-                App[App.myRole].endGame(data);
-            },
-
-            // If an error has occured we want to send .message to our client's
-            error : function(data){
-                alert(data.message);
+        /**
+         * A player answered. If this is the host, check the answer.
+         * @param data
+         */
+        hostCheckAnswer : function(data) {
+            if(App.myRole === 'Host') {
+                App.Host.checkAnswer(data);
             }
-        }; // end of our var IO 
+        },
 
-        var App = {
+        /**
+         * Let everyone know the game has ended.
+         * @param data
+         */
+        gameOver : function(data) {
+            App[App.myRole].endGame(data);
+        },
 
-            // Keep track of the gameId, identical to the ID of the Socket.IO room
-            // intially setting the gameid var to 0;
-            gameId : 0,
+        /**
+         * An error has occurred.
+         * @param data
+         */
+        error : function(data) {
+            alert(data.message);
+        }
 
-            //used to differentiate between Player and Host,
-            myRole : '' ,
+    };
 
-            //The Socket identitfier that is unique to both player and host. 
-            // Generated when the browser intially connect to the page for the first time
-            mySocketId : '',
+    var App = {
 
-            //Identifies the current round
-            // Start off at 0 because that is the first Round and the first item in the array
-            currentRound : 0,
+        /**
+         * Keep track of the gameId, which is identical to the ID
+         * of the Socket.IO Room used for the players and host to communicate
+         *
+         */
+        gameId: 0,
 
-            // Here runs the intall setup when the pages loads
+        /**
+         * This is used to differentiate between 'Host' and 'Player' browsers.
+         */
+        myRole: '',   // 'Player' or 'Host'
 
-            //This runs when the game loads for the first time
-            init : function(){
-                App.cacheElements();
-                App.showInitScreen();
-                App.bindEvents();
+        /**
+         * The Socket.IO socket object identifier. This is unique for
+         * each player and host. It is generated when the browser initially
+         * connects to the server when the page loads for the first time.
+         */
+        mySocketId: '',
 
-                //Intitalize our fast click JavaScript Library that will ommit the 300ms delay in mobile browsers
-                FastClick.attach(document.body);
-            },
+        /**
+         * Identifies the current round. Starts at 0 because it corresponds
+         * to the array of word data stored on the server.
+         */
+        currentRound: 0,
 
-            //Create references to on-screen elements used throughout the game
-            cacheElements : function(){
-                App.$doc = $(document);
+        /* *************************************
+         *                Setup                *
+         * *********************************** */
 
-                //Our Templates used in HTML
+        /**
+         * This runs when the page initially loads.
+         */
+        init: function () {
+            App.cacheElements();
+            App.showInitScreen();
+            App.bindEvents();
+
+            // Initialize the fastclick library
+            FastClick.attach(document.body);
+        },
+
+        /**
+         * Create references to on-screen elements used throughout the game.
+         */
+        cacheElements: function () {
+            App.$doc = $(document);
+
+            // Templates
             App.$gameArea = $('#gameArea');
             App.$templateIntroScreen = $('#intro-screen-template').html();
             App.$templateNewGame = $('#create-game-template').html();
             App.$templateJoinGame = $('#join-game-template').html();
             App.$hostGame = $('#host-game-template').html();
-            },
+        },
 
-            //Here we will create some event Handlers for our buttons 
-            //throughout the game
-            bindEvents : function() {
-                //Host Only!
-                //#btnStart, munipulated to creat game when 
-                //player are sure they are ready,
-                // when the btnCreateGame is clicked bind App.Host.onCreateClick  to it
-                App.$doc.on('click', '#btnCreateGame', App.Host.onCreateClick);
+        /**
+         * Create some click handlers for the various buttons that appear on-screen.
+         */
+        bindEvents: function () {
+            // Host
+            App.$doc.on('click', '#btnCreateGame', App.Host.onCreateClick);
 
-                //Player
-                App.$doc.on('click', '#btnJoinGame', App.Player.onJoinClick);
+            // Player
+            App.$doc.on('click', '#btnJoinGame', App.Player.onJoinClick);
             App.$doc.on('click', '#btnStart',App.Player.onPlayerStartClick);
             App.$doc.on('click', '.btnAnswer',App.Player.onPlayerAnswerClick);
             App.$doc.on('click', '#btnPlayerRestart', App.Player.onPlayerRestart);
+        },
 
-            },
+        /* *************************************
+         *             Game Logic              *
+         * *********************************** */
 
-            // Here begins
-            // Our Game Logic
-
-            // Show the Intial [Game Name] Ttile Screen
-            // Showing Start and Join Buttons
-            showInitScreen: function() {
+        /**
+         * Show the initial Anagrammatix Title Screen
+         * (with Start and Join buttons)
+         */
+        showInitScreen: function() {
             App.$gameArea.html(App.$templateIntroScreen);
             App.doTextFit('.title');
         },
 
-            //Code containing Reference to Host
 
-            Host : {
+        /* *******************************
+           *         HOST CODE           *
+           ******************************* */
+        Host : {
 
-                //Contains Refernce to Player Data
-                players : [],
+            /**
+             * Contains references to player data
+             */
+            players : [],
 
-                // used after the first game has ended and Players have not 
-                // refreshed their browsers
-                isNewGame : false,
+            /**
+             * Flag to indicate if a new game is starting.
+             * This is used after the first game ends, and players initiate a new game
+             * without refreshing the browser windows.
+             */
+            isNewGame : false,
 
-                // Keep track of the number of players in the room
-                numPlayersInRoom : 0,
+            /**
+             * Keep track of the number of players that have joined the game.
+             */
+            numPlayersInRoom: 0,
 
-                //used to reference to the correct
-                // answer in that particular round
-                currentCorrectAnswer : '',
+            /**
+             * A reference to the correct answer for the current round.
+             */
+            currentCorrectAnswer: '',
 
-                //Handler for the StartButton on the Title Screen
-               onCreateClick: function () {
+            /**
+             * Handler for the "Start" button on the Title Screen.
+             */
+            onCreateClick: function () {
                 // console.log('Clicked "Create A Game"');
                 IO.socket.emit('hostCreateNewGame');
             },
 
-                // The Host Screen is display for the first time
-                gameInit: function (data) {
+            /**
+             * The Host screen is displayed for the first time.
+             * @param data{{ gameId: int, mySocketId: * }}
+             */
+            gameInit: function (data) {
                 App.gameId = data.gameId;
                 App.mySocketId = data.mySocketId;
                 App.myRole = 'Host';
                 App.Host.numPlayersInRoom = 0;
 
                 App.Host.displayNewGameScreen();
-                    // console.log("Game started with ID: " + App.gameId + ' by host: ' + App.mySocketId);
+                // console.log("Game started with ID: " + App.gameId + ' by host: ' + App.mySocketId);
+            },
 
-                },
+            /**
+             * Show the Host screen containing the game URL and unique game ID
+             */
+            displayNewGameScreen : function() {
+                // Fill the game screen with the appropriate HTML
+                App.$gameArea.html(App.$templateNewGame);
 
-                // Show the host screen and then display 
-                // what the URl is along with the unique gameId
-                displayNewGameScreen : function () {
-                    // Fill the Green Screen with the appropriate HTML
-                    App.$gameArea.html(App.$templateNewGame);
+                // Display the URL on screen
+                $('#gameURL').text(window.location.href);
+                App.doTextFit('#gameURL');
 
-                    //display the URl on the screen
-                    // This is where the URL can be QR Code
-                    $('#gameURL').text(window.location.href);
-                    App.doTextFit('#gameURL');
+                // Show the gameId / room id on screen
+                $('#spanNewGameCode').text(App.gameId);
+            },
 
-                    //Show the GameID / ROOM ID on the Screen
-                    $('#spanNewGameCode').text(App.gameId);
-                },
-
-                updateWaitingScreen: function(data) {
+            /**
+             * Update the Host screen when the first player joins
+             * @param data{{playerName: string}}
+             */
+            updateWaitingScreen: function(data) {
                 // If this is a restarted game, show the screen.
                 if ( App.Host.isNewGame ) {
                     App.Host.displayNewGameScreen();
@@ -206,43 +273,42 @@ jQuery(function($){
                 // Update host screen
                 $('#playersWaiting')
                     .append('<p/>')
-                    .text('Player ' + data.playerName + ' has just joined the game. Waiting for Player 2 to join.');
+                    .text('Player ' + data.playerName + ' joined the game.');
 
                 // Store the new player's data on the Host.
                 App.Host.players.push(data);
 
-                    //Increment the number of players in the room
-                    App.Host.numPlayersInRoom += 1;
+                // Increment the number of players in the room
+                App.Host.numPlayersInRoom += 1;
 
-                    //If Two players have joined the room, Start the game
-                    // This section can be spit into three sections Solo, 2 players , 4 Players
-                    // Main Focus is JUST 2 Players
+                // If two players have joined, start the game!
                 if (App.Host.numPlayersInRoom === 2) {
-                        // Let the server know that the game is full
-                        // that the two players are present
-                        //and we are ready to begin
+                    // console.log('Room is full. Almost ready!');
+
+                    // Let the server know that two players are present.
                     IO.socket.emit('hostRoomFull',App.gameId);
-                    }
-                },
+                }
+            },
 
-                    //Show the countdown Screen
-                    gameCountdown : function(){
-                        //Prepare the Game with HTML
-                        App.$gameArea.html(App.$hostGame);
-                        App.doTextFit('#hostWord');
+            /**
+             * Show the countdown screen
+             */
+            gameCountdown : function() {
 
-                        // Begin the onscreen timer
-                        var $secondsLeft = $('#hostWord');
-                        App.countDown( $secondsLeft, 5, function(){
-                        IO.socket.emit('hostCountdownFinished', App.gameId);
-                            });
+                // Prepare the game screen with new HTML
+                App.$gameArea.html(App.$hostGame);
+                App.doTextFit('#hostWord');
 
-                        //Dispaly the players Names on the Screen
-                        //Duplicate for more than Two users
-                        // player1Score
-                        $('#player1Score')
-                        .find('.playerName')
-                        .html(App.Host.players[0].playerName);
+                // Begin the on-screen countdown timer
+                var $secondsLeft = $('#hostWord');
+                App.countDown( $secondsLeft, 5, function(){
+                    IO.socket.emit('hostCountdownFinished', App.gameId);
+                });
+
+                // Display the players' names on screen
+                $('#player1Score')
+                    .find('.playerName')
+                    .html(App.Host.players[0].playerName);
 
                 $('#player2Score')
                     .find('.playerName')
@@ -253,7 +319,11 @@ jQuery(function($){
                 $('#player2Score').find('.score').attr('id',App.Host.players[1].mySocketId);
             },
 
-                    newWord : function(data) {
+            /**
+             * Show the word for the current round on screen.
+             * @param data{{round: *, word: *, answer: *, list: Array}}
+             */
+            newWord : function(data) {
                 // Insert the new word into the DOM
                 $('#hostWord').text(data.word);
                 App.doTextFit('#hostWord');
@@ -263,47 +333,49 @@ jQuery(function($){
                 App.Host.currentRound = data.round;
             },
 
+            /**
+             * Check the answer clicked by a player.
+             * @param data{{round: *, playerId: *, answer: *, gameId: *}}
+             */
+            checkAnswer : function(data) {
+                // Verify that the answer clicked is from the current round.
+                // This prevents a 'late entry' from a player whos screen has not
+                // yet updated to the current round.
+                if (data.round === App.currentRound){
 
-                    //Here we are checking the correct answer from the Player
-                    checkAnswer : function(data) {
-                        // Verify answer was from current round
-                        //Prevent from any late answers to be submitted by late Joiners
+                    // Get the player's score
+                    var $pScore = $('#' + data.playerId);
 
-                      
-                        if(data.round === App.currentRound){
-                          // Here we are getting the players score based on the current Round
-                            var $pScore = $('#' + data.playerId);
+                    // Advance player's score if it is correct
+                    if( App.Host.currentCorrectAnswer === data.answer ) {
+                        // Add 5 to the player's score
+                        $pScore.text( +$pScore.text() + 5 );
 
-                        // Advance the player Score of it is correct
-                        if (App.Host.currentCorrectAnswer === data.answer){
+                        // Advance the round
+                        App.currentRound += 1;
 
-                            //Add X (5) points to the players score
-                            $pScore.text(+$pScore.text() + 5);
-
-                            // Advence to the next round by 1
-                            App.currentRound += 1;
-
-                            //Prepare this DATA and send it to the server
-                            var data = {
-                                gameId : App.gameId,
-                                round : App.currentRound
-                            }
-
-                            //Notify to the SERVER that it time to start the next round
-                            IO.socket.emit('hostNextRound' , data);
-
-                        } else {
-                               //If a wrong answer has been submitting, 
-                               //decrease the players's score by 3 point 
-                               $pScore.text(+$pScore.text() - 3);
+                        // Prepare data to send to the server
+                        var data = {
+                            gameId : App.gameId,
+                            round : App.currentRound
                         }
+
+                        // Notify the server to start the next round.
+                        IO.socket.emit('hostNextRound',data);
+
+                    } else {
+                        // A wrong answer was submitted, so decrement the player's score.
+                        $pScore.text( +$pScore.text() - 3 );
                     }
-                },
+                }
+            },
 
-                //All 10 Rounds have been playerd out.
-                // End game function
 
-                endGame : function(data) {
+            /**
+             * All 10 rounds have played out. End the game.
+             * @param data
+             */
+            endGame : function(data) {
                 // Get the data for player 1 from the host screen
                 var $p1 = $('#player1Score');
                 var p1Score = +$p1.find('.score').text();
@@ -318,74 +390,87 @@ jQuery(function($){
                 var winner = (p1Score < p2Score) ? p2Name : p1Name;
                 var tie = (p1Score === p2Score);
 
-                    //Display the Winner (of if there is a tie)
-                    if(tie){
+                // Display the winner (or tie game message)
+                if(tie){
                     $('#hostWord').text("It's a Tie!");
                 } else {
                     $('#hostWord').text( winner + ' Wins!!' );
                 }
                 App.doTextFit('#hostWord');
 
-                    //Reset the game data back to 0 
-                    //tell the server that the new game has started
-                    App.Host.numPlayersInRoom = 0;
-                    App.Host.isNewGame = true;
+                // Reset game data
+                App.Host.numPlayersInRoom = 0;
+                App.Host.isNewGame = true;
+            },
 
-                },
-
-                // A player has hit the "Start Again" btn after the game has ended
-              estartGame : function() {
+            /**
+             * A player hit the 'Start Again' button after the end of a game.
+             */
+            restartGame : function() {
                 App.$gameArea.html(App.$templateNewGame);
                 $('#spanNewGameCode').text(App.gameId);
             }
         },
 
-            //Here we are Generating The code for the Player
 
-            Player : {
+        /* *****************************
+           *        PLAYER CODE        *
+           ***************************** */
 
-                //Reference to the socket ID of the Host
+        Player : {
 
-                hostSocketId: '',
+            /**
+             * A reference to the socket ID of the Host
+             */
+            hostSocketId: '',
 
-                //The players name has entered onto the screen
-                myName: '',
+            /**
+             * The player's name entered on the 'Join' screen.
+             */
+            myName: '',
 
-                //Click handler for the "Join" button
-                onJoinClick: function(){
-                    //The click for Join a Game has been Made
-                    // Display the Join Game HTML on the Payer's Screen 
-                    App.$gameArea.html(App.$templateJoinGame);
-                },
+            /**
+             * Click handler for the 'JOIN' button
+             */
+            onJoinClick: function () {
+                // console.log('Clicked "Join A Game"');
 
-                // The player has Entered their name in the Input 
-                //if the player does not enter a name then it will be anon
-                onPlayerStartClick : function(){
-                    // Player clicked start
-                    //Collect the data and send it to the server
-                    var data = {
+                // Display the Join Game HTML on the player's screen.
+                App.$gameArea.html(App.$templateJoinGame);
+            },
+
+            /**
+             * The player entered their name and gameId (hopefully)
+             * and clicked Start.
+             */
+            onPlayerStartClick: function() {
+                // console.log('Player clicked "Start"');
+
+                // collect data to send to the server
+                var data = {
                     gameId : +($('#inputGameId').val()),
-                    playerName : $('#inputPlayerName').val() || 'Guest User'
+                    playerName : $('#inputPlayerName').val() || 'anon'
                 };
 
-                    // Send the GameID and playerName to the Server
+                // Send the gameId and playerName to the server
                 IO.socket.emit('playerJoinGame', data);
 
-                    // Set the appropriate propertiest for the current player
-                    App.myRole = 'Player';
+                // Set the appropriate properties for the current player.
+                App.myRole = 'Player';
                 App.Player.myName = data.playerName;
             },
 
-
-                // Click handler for the Player Hitting a word in the word listen
-                onPlayerAnswerClick: function() {
+            /**
+             *  Click handler for the Player hitting a word in the word list.
+             */
+            onPlayerAnswerClick: function() {
                 // console.log('Clicked Answer Button');
                 var $btn = $(this);      // the tapped button
                 var answer = $btn.val(); // The tapped word
 
-                    //Send the tapped word and player info to the Host
-                    //To see if the button pressed is the correct word
-                    var data = {
+                // Send the player info and tapped word to the server so
+                // the host can check the answer.
+                var data = {
                     gameId: App.gameId,
                     playerId: App.mySocketId,
                     answer: answer,
@@ -394,9 +479,11 @@ jQuery(function($){
                 IO.socket.emit('playerAnswer',data);
             },
 
-                // Click handler for "Start Again" button that appears
-                // when the game is over 
-                onPlayerRestart : function() {
+            /**
+             *  Click handler for the "Start Again" button that appears
+             *  when a game is over.
+             */
+            onPlayerRestart : function() {
                 var data = {
                     gameId : App.gameId,
                     playerName : App.Player.myName
@@ -406,8 +493,11 @@ jQuery(function($){
                 $('#gameArea').html("<h3>Waiting on host to start new game.</h3>");
             },
 
-                // display the waiting Screen for Player 1
-                updateWaitingScreen : function(data) {
+            /**
+             * Display the waiting screen for player 1
+             * @param data
+             */
+            updateWaitingScreen : function(data) {
                 if(IO.socket.socket.sessionid === data.mySocketId){
                     App.myRole = 'Player';
                     App.gameId = data.gameId;
@@ -418,16 +508,21 @@ jQuery(function($){
                 }
             },
 
-                // Display Get Ready While the COundown timer Clicks
-                gameCountdown : function(hostData) {
+            /**
+             * Display 'Get Ready' while the countdown timer ticks down.
+             * @param hostData
+             */
+            gameCountdown : function(hostData) {
                 App.Player.hostSocketId = hostData.mySocketId;
                 $('#gameArea')
                     .html('<div class="gameOver">Get Ready!</div>');
             },
 
-                // Show the list of words for the current round that we are in
-                newWord : function(data) {
-                    
+            /**
+             * Show the list of words for the current round.
+             * @param data{{round: *, word: *, answer: *, list: Array}}
+             */
+            newWord : function(data) {
                 // Create an unordered list element
                 var $list = $('<ul/>').attr('id','ulAnswers');
 
@@ -445,13 +540,14 @@ jQuery(function($){
                         )
                 });
 
-
                 // Insert the list onto the screen.
                 $('#gameArea').html($list);
             },
 
-                    // Show the "Game Over" Screen
-                     endGame : function() {
+            /**
+             * Show the "Game Over" screen.
+             */
+            endGame : function() {
                 $('#gameArea')
                     .html('<div class="gameOver">Game Over!</div>')
                     .append(
@@ -464,11 +560,19 @@ jQuery(function($){
             }
         },
 
-            // Display the countdown timer on the host Screen
-            // $el - The countaier element for the coundown timer
-            // StartTime - param
-            // Callback - the funtio to call when the timer ends
-            countDown : function( $el, startTime, callback) {
+
+        /* **************************
+                  UTILITY CODE
+           ************************** */
+
+        /**
+         * Display the countdown timer on the Host screen
+         *
+         * @param $el The container element for the countdown timer
+         * @param startTime
+         * @param callback The function to call when the timer ends.
+         */
+        countDown : function( $el, startTime, callback) {
 
             // Display the starting time on the screen.
             $el.text(startTime);
@@ -479,8 +583,8 @@ jQuery(function($){
             // Start a 1 second timer
             var timer = setInterval(countItDown,1000);
 
-                //Decrement the displayed timer value by 1 second each "tick"
-                function countItDown(){
+            // Decrement the displayed timer value on each 'tick'
+            function countItDown(){
                 startTime -= 1
                 $el.text(startTime);
                 App.doTextFit('#hostWord');
@@ -497,10 +601,13 @@ jQuery(function($){
 
         },
 
-
-            // doTextFit extention to make text fix inside a given element
-            // also make it as big as possible
-           doTextFit : function(el) {
+        /**
+         * Make the text inside the given element as big as possible
+         * See: https://github.com/STRML/textFit
+         *
+         * @param el The parent element of some text
+         */
+        doTextFit : function(el) {
             textFit(
                 $(el)[0],
                 {
