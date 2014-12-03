@@ -26,20 +26,20 @@
 }
 
 
-button{
-	border: none;
-position: relative;
-padding: 0px 1em;
-background-color: #33B76E;
-color: #FFF;
-text-transform: uppercase;
-letter-spacing: 1px;
-font-weight: 700;
-line-height: 40px;
-overflow: hidden;
-opacity: 0.8;
-width: auto;
-min-width: 150px;
+button {
+    border: medium none;
+    position: relative;
+    padding: 0px 1em;
+    background-color: #FFF;
+    color: #000 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    line-height: 40px;
+    overflow: hidden;
+    opacity: 0.8;
+    width: auto;
+    min-width: 150px;
 }
 
 
