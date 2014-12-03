@@ -63,7 +63,7 @@ function hostPrepareGame(gameId) {
  * @param gameId The game ID / room ID
  */
 function hostStartGame(gameId) {
-    // console.log('Game Started.');
+    console.log('Game Started.');
     sendWord(0,gameId);
 };
 
@@ -116,7 +116,7 @@ function playerJoinGame(data) {
 
     } else {
         // Otherwise, send an error message back to the player.
-        this.emit('error',{message: "Sorry, this room does not exist."} );
+        this.emit('error',{message: "This room does not exist."} );
     }
 }
 
@@ -228,7 +228,7 @@ function shuffle(array) {
  */
 var wordPool = [
     {
-        "words"  : [ "Friends Was First on Television","1997" ],
+        "words"  : [ "sale","seal","ales","leas" ],
         "decoys" : [ "lead","lamp","seed","eels","lean","cels","lyse","sloe","tels","self" ]
     },
 
