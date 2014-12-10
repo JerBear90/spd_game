@@ -31,8 +31,11 @@ html, body {
     padding: 0;
 }
 nav {
-    height: 50px;
-    background: none repeat scroll 0% 0% #FFF;
+  height: 50px;
+background: #fff;
+width: 70%;
+margin-left: auto;
+margin-right: auto;
 }
 
 h1{
@@ -122,8 +125,8 @@ footer {
     margin: 0px 10px;
 }
 ul {
-    width: 280px;
-    float: left;
+   width: auto;
+   float: left;
 }
 li {
     display: inline-block;
