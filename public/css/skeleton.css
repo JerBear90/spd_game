@@ -609,10 +609,12 @@ width: 100%;
     text-align: center;
 }
 .container {
-    position: relative;
-    width: 910px;
-    margin: 0px auto;
-    padding: 0px;
+position: relative;
+width: 71%;
+margin: 0px auto;
+padding: 0px;
+margin-left: auto;
+margin-right: auto;
 }
 .container .column,  .container .columns {
     float: left;
@@ -1232,7 +1234,9 @@ margin-top: 15px;
 margin-left: 40px;
 }
 a{
-    color:#505D6D;
+color: #505D6D;
+text-decoration: none;
+font-family: "Open Sans";
 }
 
 a:hover{
