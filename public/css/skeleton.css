@@ -1223,3 +1223,11 @@ padding-bottom: 20px;
 .title_text {
     font-size: 67px;
 }
+
+.navbar-header {
+   width: 69%;
+float: left;
+display: inline-block;
+margin-top: 15px;
+margin-left: 40px;
+}
