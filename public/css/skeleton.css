@@ -1227,12 +1227,17 @@ padding-bottom: 20px;
 }
 
 .navbar-header {
-   width: 69%;
+width: 20%;
 float: left;
 display: inline-block;
 margin-top: 15px;
 margin-left: 40px;
 }
+.nav{width: auto;
+float: right;
+margin-right: 120px;}
+
+
 a{
 color: #505D6D;
 text-decoration: none;
